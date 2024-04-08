@@ -1,0 +1,135 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fafaf9;
+}
+
+a {
+  text-decoration: none;
+  color: #0891b2;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.wrapper {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto 1fr;
+}
+
+header {
+  grid-column: 1 / span 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+header .links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+h1 {
+  margin: 0;
+  padding: 6px 12px;
+  color: #57534e;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+textarea {
+  color: #292524;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  line-height: 1.5;
+  padding: 12px;
+  border: none;
+  transition: outline 0.075s ease-out;
+  border-top: 1px solid #44403c;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:placeholder-shown {
+    font-size: 14px;
+  }
+}
+
+#input {
+  resize: horizontal;
+  width: 70vw;
+  min-width: 15vw;
+  max-width: 80vw;
+  border-right: 1px solid #44403c;
+}
+
+#output {
+  background: #e7e5e4;
+  resize: none;
+}
+
+.statusbar {
+  grid-column: 1 / span 2;
+  background: #44403c;
+  color: #d6d3d1;
+}
+
+#linescount {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+
+  & > * {
+    font-size: 14px;
+    padding: 4px 12px;
+  }
+}
+
+.failed-count {
+  background: #b91c1c;
+  color: #fee2e2;
+}
+
+.done-count {
+  background: #a16207;
+  color: #fef9c3;
+}
+
+.success-count {
+  background: #15803d;
+  color: #dcfce7;
+}
+
+.progress {
+  display: inline-grid;
+  width: 200px;
+  height: 10px;
+  appearance: none;
+  border-radius: 3px;
+}
+
+.progress-success {
+  background: #4ade80;
+}
+
+.progress-done {
+  background: #facc15;
+}
+
+.progress-failed {
+  background: #f87171;
+}
+
+.confluence-template {
+  background: #e7e5e4;
+  color: black;
+  font-weight: normal;
+}
