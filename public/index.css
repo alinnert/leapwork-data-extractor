@@ -12,6 +12,11 @@ a {
   }
 }
 
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
 .wrapper {
   position: fixed;
   inset: 0;
@@ -23,11 +28,19 @@ a {
 header {
   grid-column: 1 / span 2;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto auto 1fr auto;
   align-items: center;
 }
 
-header .links {
+header .app-logo {
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+  color: #16a34a;
+}
+
+header .toolbar,
+header .secondary-toolbar {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -36,7 +49,8 @@ header .links {
 
 h1 {
   margin: 0;
-  padding: 6px 12px;
+  padding: 6px;
+  padding-right: 12px;
   color: #57534e;
   font-size: 18px;
   font-weight: 600;
@@ -78,6 +92,8 @@ textarea {
 
 .statusbar {
   grid-column: 1 / span 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
   background: #44403c;
   color: #d6d3d1;
 }
@@ -108,6 +124,11 @@ textarea {
   color: #dcfce7;
 }
 
+.running-count {
+  background: #7e22ce;
+  color: #f3e8ff;
+}
+
 .progress {
   display: inline-grid;
   width: 200px;
@@ -128,8 +149,24 @@ textarea {
   background: #f87171;
 }
 
+.progress-running {
+  background: #c084fc;
+}
+
 .confluence-template {
   background: #e7e5e4;
   color: black;
   font-weight: normal;
+}
+
+.statusbar-links {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.statusbar-links a {
+  color: white;
 }
