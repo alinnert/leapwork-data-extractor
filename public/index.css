@@ -129,6 +129,11 @@ textarea {
   color: #f3e8ff;
 }
 
+.unknown-count {
+  background: #555;
+  color: #eee;
+}
+
 .progress {
   display: inline-grid;
   width: 200px;
