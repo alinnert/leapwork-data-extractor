@@ -5,12 +5,12 @@ const linescountEl = $id('linescount')
 
 $id('clear-data-button').addEventListener('click', () => {
   inputEl.value = ''
-  handleInputElInput([])
+  handleInputElInput()
 })
 
 $id('paste-data-button').addEventListener('click', async () => {
   inputEl.value = await navigator.clipboard.readText()
-  handleInputElInput(inputEl.value.split('\n'))
+  handleInputElInput()
 })
 
 $id('copy-result-button').addEventListener('click', async () => {
@@ -25,10 +25,12 @@ const isResultLine = (l, r) =>
   l.endsWith(`Result: ${r}`) && l.match(regex) !== null
 
 inputEl.addEventListener('input', (event) => {
-  handleInputElInput(event.target.value.split('\n'))
+  handleInputElInput()
 })
 
-function handleInputElInput(lines) {
+function handleInputElInput() {
+  const lines = inputEl.value.split('\n')
+  
   let successLines = []
   let doneLines = []
   let failedLines = []
