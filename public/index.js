@@ -145,7 +145,7 @@ function updateStatusbar(
   ${running > 0 ? runningCountHtml : ''}
   ${unknown > 0 ? unknownCountHtml : ''}
 
-  <div class="progress" style="grid-template-columns: ${failed}fr ${done}fr ${success}fr ${running}fr;">
+  <div class="progress" style="grid-template-columns: ${success}fr ${done}fr ${failed}fr ${running}fr;">
     <div class="progress-success"></div>
     <div class="progress-done"></div>
     <div class="progress-failed"></div>
