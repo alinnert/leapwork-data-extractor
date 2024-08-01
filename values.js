@@ -3,7 +3,7 @@ export const $class = (className) => Array.from(document.getElementsByClassName(
 
 export const inputEl = $id('input')
 export const outputEl = $id('output')
-export const linescountEl = $id('linescount')
+export const dataInfoEl = $id('data-info')
 
 export const resultLineRegex =
   /Timestamp: (\d\d)\.(\d\d)\.(\d\d\d\d) (\d\d:\d\d:\d\d).*Flow: ([^,]+)/

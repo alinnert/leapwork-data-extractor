@@ -1,5 +1,5 @@
 import { getPercent } from './index.js'
-import { $class, $id, linescountEl } from './values.js'
+import { $class, $id, dataInfoEl } from './values.js'
 
 const defaultOptions = {
   date: null,
@@ -8,6 +8,10 @@ const defaultOptions = {
   failed: 0,
   running: 0,
   unknown: 0,
+}
+
+const state = {
+  branchName: '',
 }
 
 export function updateStatusbar({
@@ -21,7 +25,7 @@ export function updateStatusbar({
   const total = success + done + failed + running + unknown
 
   if (total === 0 || date === null) {
-    linescountEl.innerHTML = `<div>Keine Testergebnisse vorhanden</div>`
+    dataInfoEl.innerHTML = `<div>Keine Testergebnisse vorhanden</div>`
     return
   }
 
@@ -58,7 +62,7 @@ export function updateStatusbar({
 
   const crown = success === total ? ' - 👑' : ''
 
-  linescountEl.innerHTML = `
+  dataInfoEl.innerHTML = `
   <div class="total-count">
     ${total} Testläufe
   </div>
@@ -69,33 +73,50 @@ export function updateStatusbar({
   ${running > 0 ? runningCountHtml : ''}
   ${unknown > 0 ? unknownCountHtml : ''}
 
-  <div class="progress" style="grid-template-columns: ${success}fr ${done}fr ${failed}fr ${running}fr;">
-    <div class="progress-success"></div>
-    <div class="progress-done"></div>
-    <div class="progress-failed"></div>
-    <div class="progress-running"></div>
+  <div>
+    <div class="progress" style="grid-template-columns: ${success}fr ${done}fr ${failed}fr ${running}fr;">
+      <div class="progress-success"></div>
+      <div class="progress-done"></div>
+      <div class="progress-failed"></div>
+      <div class="progress-running"></div>
+    </div>
   </div>
 
   <div class="statusbar-text">Confluence-Überschrift:</div>
-  <div class="confluence-template" id="confluence-headline">
+
+  <div class="confluence-headline" id="confluence-headline">
     ${date} ${successPercentage} (${success}/${total})${crown}
   </div>
-  <div class="statusbar-button">
+
+  <div class="statusbar-buttons">
+    <input id="branch-input" value="${state.branchName}" placeholder="Branch-Name">
     <button class="copy-confluence-headline-button">Kopieren</button>
-    <button class="copy-confluence-headline-button" data-date="${date}">Kopieren (noch laufend)</button>
+    <button class="copy-confluence-headline-button" data-date="${date}">Kopieren (läuft noch)</button>
   </div>
   `
+
+  $id('branch-input').addEventListener('input', (event) => {
+    state.branchName = event.currentTarget.value
+  })
 
   $class('copy-confluence-headline-button').forEach((button) => {
     button.addEventListener('click', async (event) => {
       const dataDate = event.currentTarget.dataset.date
 
       if (dataDate === undefined) {
-        const headlineText = $id('confluence-headline').textContent.trim()
-        await navigator.clipboard.writeText(headlineText)
+        const baseHeadline = $id('confluence-headline').textContent.trim()
+        const headline = addBranchNameToHeadline(baseHeadline)
+        await navigator.clipboard.writeText(headline)
       } else {
-        await navigator.clipboard.writeText(`${dataDate} (läuft noch)`)
+        const headline = addBranchNameToHeadline(`${dataDate} (läuft noch)`)
+        await navigator.clipboard.writeText(headline)
       }
     })
   })
+}
+
+function addBranchNameToHeadline(baseHeadline) {
+  return state.branchName.trim() === ''
+    ? baseHeadline
+    : `${baseHeadline} - ${state.branchName}`
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Leapwork Data Extractor</title>
-    <meta name="theme-color" content="#fafaf9">
+    <meta name="theme-color" content="#65a30d">
 
     <link rel="stylesheet" href="index.css" />
   </head>
@@ -30,11 +30,11 @@
 
         <div class="toolbar">
           <button id="clear-data-button">Daten leeren</button>
-          <button id="paste-data-button">Aus Zwischenablage einfügen</button>
+          <button id="paste-data-button">Daten aus Zwischenablage einfügen</button>
         </div>
 
         <div class="secondary-toolbar">
-          <button id="copy-result-button">Daten kopieren</button>
+          <button id="copy-result-button">Ergebnis für Excel kopieren</button>
         </div>
       </header>
 
@@ -55,13 +55,15 @@ Format-Beispiel:
 
 Timestamp: DD.MM.YYYY hh:mm:ss +hh:mm, Flow: [flow name], Agent: [agent name], Schedule: [schedule name], Runtime: hh:mm:ss.ms{7}, Result: [Passed|Done|Failed|Running]"
       ></textarea>
+
       <textarea
         id="output"
         readonly
-        placeholder="Keine Ausgabe vorhanden..."
+        placeholder="Keine Ausgabe vorhanden"
       ></textarea>
+
       <div class="statusbar">
-        <div id="linescount"></div>
+        <div id="data-info" class="data-info"></div>
         <div class="statusbar-links">
           <a href="https://github.com/alinnert/leapwork-data-extractor">
             Source on GitHub

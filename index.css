@@ -1,14 +1,42 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #fafaf9;
+  background: #65a30d;
 }
 
 a {
   text-decoration: none;
-  color: #0891b2;
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+input {
+  display: inline-block;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background: #ecfccb;
+  
+  &:focus {
+    background: white;
+  }
+}
+
+button {
+  display: inline-block;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background: #3f6212;
+
+  &:hover {
+    background: #365314;
+  }
+
+  &:active {
+    background: #1a2e05;
   }
 }
 
@@ -30,20 +58,21 @@ header {
   display: grid;
   grid-template-columns: auto auto 1fr auto;
   align-items: center;
+  height: 40px;
 }
 
 header .app-logo {
   padding-left: 12px;
   display: flex;
   align-items: center;
-  color: #16a34a;
+  color: #ecfccb;
 }
 
 header .toolbar,
 header .secondary-toolbar {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
   padding-right: 12px;
 }
 
@@ -51,7 +80,7 @@ h1 {
   margin: 0;
   padding: 6px;
   padding-right: 12px;
-  color: #57534e;
+  color: white;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 1px;
@@ -65,8 +94,9 @@ textarea {
   line-height: 1.5;
   padding: 12px;
   border: none;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   transition: outline 0.075s ease-out;
-  border-top: 1px solid #44403c;
 
   &:focus {
     outline: none;
@@ -79,14 +109,16 @@ textarea {
 
 #input {
   resize: horizontal;
+  margin-left: 6px;
+  margin-right: 6px;
   width: 70vw;
   min-width: 15vw;
   max-width: 80vw;
-  border-right: 1px solid #44403c;
 }
 
 #output {
-  background: #e7e5e4;
+  background: #ecfccb;
+  margin-right: 6px;
   resize: none;
 }
 
@@ -94,16 +126,18 @@ textarea {
   grid-column: 1 / span 2;
   display: grid;
   grid-template-columns: 1fr auto;
-  background: #44403c;
-  color: #d6d3d1;
+  color: white;
+  height: 40px;
 }
 
-#linescount {
+.data-info {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   font-weight: 600;
 
   & > * {
+    display: flex;
+    align-items: center;
     font-size: 14px;
     padding: 4px 12px;
   }
@@ -137,9 +171,11 @@ textarea {
 .progress {
   display: inline-grid;
   width: 200px;
-  height: 10px;
-  appearance: none;
-  border-radius: 3px;
+  height: 12px;
+  padding: 0;
+  border: 1px solid #365314;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .progress-success {
@@ -158,10 +194,21 @@ textarea {
   background: #c084fc;
 }
 
-.confluence-template {
-  background: #e7e5e4;
+.confluence-headline {
+  background: #d9f99d;
   color: black;
   font-weight: normal;
+  margin-right: 8px;
+}
+
+.statusbar-buttons {
+  display: flex;
+  gap: 4px;
+  padding: 0 4px;
+}
+
+#branch-input {
+  width: 100px;
 }
 
 .statusbar-links {
