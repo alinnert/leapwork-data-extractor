@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "strict": true,
+    "module": "ES2022",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["./public"]
+}

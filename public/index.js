@@ -1,7 +1,5 @@
-const $id = (id) => document.getElementById(id)
-const inputEl = $id('input')
-const outputEl = $id('output')
-const linescountEl = $id('linescount')
+import { updateStatusbar } from './updateStatusbar.js'
+import { $id, inputEl, outputEl, resultLineRegex } from './values.js'
 
 $id('clear-data-button').addEventListener('click', () => {
   inputEl.value = ''
@@ -18,11 +16,8 @@ $id('copy-result-button').addEventListener('click', async () => {
   await navigator.clipboard.writeText(outputEl.value)
 })
 
-const regex =
-  /Timestamp: (\d\d)\.(\d\d)\.(\d\d\d\d) (\d\d:\d\d:\d\d).*Flow: ([^,]+)/
-
 const isResultLine = (l, r) =>
-  l.endsWith(`Result: ${r}`) && l.match(regex) !== null
+  l.endsWith(`Result: ${r}`) && l.match(resultLineRegex) !== null
 
 inputEl.addEventListener('input', (event) => {
   handleInputElInput()
@@ -52,7 +47,7 @@ function handleInputElInput() {
   }
 
   const extractedData = failedLines
-    .map((l) => l.match(regex))
+    .map((l) => l.match(resultLineRegex))
     .filter((l) => l !== null)
 
   const failedExcelData = extractedData.map((m) => `${m[4]}\t${m[5]}`)
@@ -65,7 +60,7 @@ function handleInputElInput() {
   const running = runningLines.length
   const unknown = unknownLines.length
 
-  const firstLineMatch = lines[0].match(regex)
+  const firstLineMatch = lines[0].match(resultLineRegex)
   if (firstLineMatch === null) {
     updateStatusbar()
     return
@@ -84,90 +79,7 @@ function setOutput(items) {
   outputEl.value = items.join('\n')
 }
 
-function updateStatusbar(
-  { date, success, done, failed, running, unknown } = {
-    date: null,
-    success: 0,
-    done: 0,
-    failed: 0,
-    running: 0,
-    unknown: 0,
-  }
-) {
-  const total = success + done + failed + running + unknown
-
-  if (total === 0 || date === null) {
-    linescountEl.innerHTML = `<div>Keine Testergebnisse vorhanden</div>`
-    return
-  }
-
-  const successPercentage = getPercent(total, success)
-  const donePercentage = getPercent(total, done)
-  const failedPercentage = getPercent(total, failed)
-  const runningPercentage = getPercent(total, running)
-  const unknownPercentage = getPercent(total, unknown)
-
-  const successCountHtml = `
-    <div class="success-count">
-    ${success} erfolgreich (${successPercentage})
-    </div>`
-
-  const doneCountHtml = `
-    <div class="done-count">
-    ${done} beendet (${donePercentage})
-    </div>`
-
-  const failedCountHtml = `
-    <div class="failed-count">
-      ${failed} fehlgeschlagen (${failedPercentage})
-    </div>`
-
-  const runningCountHtml = `
-    <div class="running-count">
-      ${running} laufend (${runningPercentage})
-    </div>`
-
-  const unknownCountHtml = `
-    <div class="unknown-count">
-      ${unknown} unbekannt (${unknownPercentage})
-    </div>`
-
-  const crown = success === total ? ' - 👑' : ''
-
-  linescountEl.innerHTML = `
-  <div class="total-count">
-    ${total} Testläufe
-  </div>
-
-  ${success > 0 ? successCountHtml : ''}
-  ${done > 0 ? doneCountHtml : ''}
-  ${failed > 0 ? failedCountHtml : ''}
-  ${running > 0 ? runningCountHtml : ''}
-  ${unknown > 0 ? unknownCountHtml : ''}
-
-  <div class="progress" style="grid-template-columns: ${success}fr ${done}fr ${failed}fr ${running}fr;">
-    <div class="progress-success"></div>
-    <div class="progress-done"></div>
-    <div class="progress-failed"></div>
-    <div class="progress-running"></div>
-  </div>
-
-  <div class="statusbar-text">Confluence-Überschrift:</div>
-  <div class="confluence-template" id="confluence-headline">
-    ${date} ${successPercentage} (${success}/${total})${crown}
-  </div>
-  <div class="statusbar-button">
-    <button id="copy-confluence-headline-button">Kopieren</button>
-  </div>
-  `
-
-  $id('copy-confluence-headline-button').addEventListener('click', async () => {
-    const text = $id('confluence-headline').textContent.trim()
-    await navigator.clipboard.writeText(text)
-  })
-}
-
-function getPercent(total, amount) {
+export function getPercent(total, amount) {
   const percent = Math.round((1000 / total) * amount) / 10
   return `${percent}%`
 }
