@@ -40,15 +40,39 @@ async function handleCopyResultClick() {
   <AppFrame>
     <AppHeader>
       <template #primary>
-        <UiButton :icon="TrashIcon" @click="handleClearDataClick">Daten leeren</UiButton>
-        <UiButton :icon="ClipboardDocumentListIcon" @click="handlePasteDataClick">
-          Daten aus Zwischenablage einfügen
-        </UiButton>
+        <StatusbarSection>
+          <UiButton
+            :disabled="data.input.value === ''"
+            :icon="TrashIcon"
+            @click="handleClearDataClick"
+          >
+            Leeren
+          </UiButton>
+
+          <UiButton :icon="ClipboardDocumentListIcon" @click="handlePasteDataClick">
+            Einfügen
+          </UiButton>
+        </StatusbarSection>
+
+        <StatusbarSection title="Branch">
+          <UiInput id="branch-name" class="w-32" v-model="data.branchName.value" />
+        </StatusbarSection>
+
+        <ConfluenceHeadline
+          :passedCount="data.passedRows.value.length"
+          :totalCount="data.items.value.length"
+          :date="data.items.value[0]?.date"
+          :branchName="data.branchName.value"
+        ></ConfluenceHeadline>
       </template>
 
       <template #secondary>
-        <UiButton :icon="DocumentDuplicateIcon" @click="handleCopyResultClick">
-          Ergebnis für Excel kopieren
+        <UiButton
+          :disabled="data.outputText.value.trim() === ''"
+          :icon="DocumentDuplicateIcon"
+          @click="handleCopyResultClick"
+        >
+          Ergebnis kopieren
         </UiButton>
       </template>
     </AppHeader>
@@ -56,17 +80,24 @@ async function handleCopyResultClick() {
     <UiTextarea
       v-model="data.input.value"
       class="resize-x mx-2 w-[70vw] min-w-[15vw] max-w-[80vw] bg-theme-50 placeholder:text-theme-600"
-      placeholder="Anleitung:
+      placeholder="Was ist der Leapwork Data Extractor?
+====================================
       
-Der Leapwork Data Extractor filtert aus Leapwork kopierte Testergebnisse die
-Fehlgeschlagenen heraus und zieht aus diesen die Uhrzeit und den Namen heraus,
-sodass diese Daten in Excel eingefügt werden können.
+Der Leapwork Data Extractor filtert aus den von Leapwork kopierten Testergebnissen die
+Fehlgeschlagenen heraus und bringt sie in ein Format, das in Excel eingefügt werden kann,
+um dort weitere Details zu den fehlgeschlagenen Tests angeben zu können.
 
-- Testfälle in Leapwork markieren, rechtsklicken und 'Copy flow run data' klicken.
-- Diese aus der Zwischenablage hier ins linke Textfeld einfügen.
-- Das Ergebnis auf der rechten Seite kopieren und in Excel einfügen.
 
-Format-Beispiel:
+Wie funktioniert der Leapwork Data Extractor?
+=============================================
+
+1. Testfälle in Leapwork markieren, rechtsklicken und 'Copy flow run data' klicken.
+2. Diese aus der Zwischenablage hier ins linke Textfeld einfügen.
+3. Das Ergebnis auf der rechten Seite kopieren und in Excel einfügen.
+
+
+Format-Beispiel
+===============
 
 Timestamp: DD.MM.YYYY hh:mm:ss +hh:mm, Flow: [flow name], Agent: [agent name], Schedule: [schedule name], Runtime: hh:mm:ss.ms{7}, Result: [Passed|Done|Failed|Running]"
     />
@@ -80,11 +111,12 @@ Timestamp: DD.MM.YYYY hh:mm:ss +hh:mm, Flow: [flow name], Agent: [agent name], S
 
     <AppFooter>
       <StatusbarRow v-if="data.items.value.length === 0">
-        <StatusbarSection>Keine Testergebnisse vorhanden</StatusbarSection>
+        <StatusbarSection title="Ergebnisse">Keine vorhanden</StatusbarSection>
       </StatusbarRow>
+
       <StatusbarRow v-else>
-        <StatusbarSection>
-          <TotalCount :count="data.items.value.length" />
+        <StatusbarSection title="Ergebnisse">
+          <TotalCount :count="data.items.value.length" class="mr-4" />
 
           <ResultCounter
             type="passed"
@@ -101,36 +133,17 @@ Timestamp: DD.MM.YYYY hh:mm:ss +hh:mm, Flow: [flow name], Agent: [agent name], S
             :count="data.failedRows.value.length"
             :total="data.items.value.length"
           />
-          <ResultCounter
-            type="running"
-            :count="data.runningRows.value.length"
-            :total="data.items.value.length"
-          />
 
           <ProgressBar
             :passed="data.passedRows.value.length"
             :done="data.doneRows.value.length"
             :failed="data.failedRows.value.length"
-            :running="data.runningRows.value.length"
           />
         </StatusbarSection>
-      </StatusbarRow>
-
-      <StatusbarRow>
-        <StatusbarSection title="Branch">
-          <UiInput id="branch-name" class="w-28" v-model="data.branchName.value"></UiInput>
-        </StatusbarSection>
-
-        <ConfluenceHeadline
-          :passedCount="data.passedRows.value.length"
-          :totalCount="data.items.value.length"
-          :date="data.items.value[0]?.date"
-          :branchName="data.branchName.value"
-        ></ConfluenceHeadline>
 
         <template #secondary>
           <LinkList>
-            <a href="https://github.com/alinnert/leapwork-data-extractor">Quellcode auf GitHub</a>
+            <a href="https://github.com/alinnert/leapwork-data-extractor">Quellcode</a>
           </LinkList>
         </template>
       </StatusbarRow>

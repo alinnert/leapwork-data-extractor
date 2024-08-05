@@ -61,7 +61,7 @@ async function handleCopyHeadlineRunningClick() {
 </script>
 
 <template>
-  <StatusbarSection title="Überschrift" v-if="totalCount > 0">
+  <StatusbarSection title="Confluence-Überschrift" v-if="totalCount > 0">
     <UiOutput>{{ confluenceHeadline }}</UiOutput>
 
     <UiButton
@@ -69,14 +69,14 @@ async function handleCopyHeadlineRunningClick() {
       :icon="DocumentDuplicateIcon"
       @click="handleCopyHeadlineClick"
     >
-      Überschrift kopieren
+      Kopieren
     </UiButton>
     <UiButton
       :disabled="totalCount === 0"
       :icon="ClockIcon"
       @click="handleCopyHeadlineRunningClick"
     >
-      Überschrift kopieren (läuft noch)
+      Kopieren (läuft noch)
     </UiButton>
   </StatusbarSection>
 </template>

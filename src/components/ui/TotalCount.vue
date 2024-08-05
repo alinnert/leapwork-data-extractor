@@ -3,5 +3,5 @@ defineProps<{ count: number }>()
 </script>
 
 <template>
-  <div>{{ count }} {{ count === 1 ? 'Testlauf' : 'Testläufe' }}</div>
+  <div>{{ count }} insgesamt</div>
 </template>

@@ -3,7 +3,7 @@ import AppLogo from './AppLogo.vue'
 </script>
 
 <template>
-  <header class="header col-span-2 grid grid-cols-[auto,auto,1fr,auto] items-center h-10 drag">
+  <header class="header col-span-2 grid grid-cols-[auto,auto,1fr,auto] items-center h-10 drag text-white text-sm">
     <AppLogo></AppLogo>
 
     <div class="flex gap-x-1 no-drag">

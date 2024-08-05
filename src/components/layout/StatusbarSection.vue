@@ -5,8 +5,8 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="flex items-center gap-x-2 mx-3">
-    <div v-if="props.title !== undefined" class="font-bold">{{ props.title }}:</div>
+  <div class="flex items-center gap-x-1 mx-3">
+    <div v-if="props.title !== undefined" class="font-bold select-none mr-2">{{ props.title }}:</div>
     <slot></slot>
   </div>
 </template>
