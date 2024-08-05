@@ -1,7 +1,13 @@
+<script setup lang="ts">
+import type { Component } from 'vue'
+
+const props = defineProps<{ icon?: Component }>()
+</script>
+
 <template>
   <button class="button">
-    <div class="icon">
-      <slot name="icon"></slot>
+    <div class="icon" v-if="props.icon !== undefined">
+      <component :is="props.icon" class="size-4"></component>
     </div>
     <slot></slot>
   </button>

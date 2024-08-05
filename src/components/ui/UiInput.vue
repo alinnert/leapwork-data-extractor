@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const model = defineModel()
+const model = defineModel({ type: String })
 </script>
 
 <template>
-  <input class="input" v-model="model">
+  <input class="input" v-model="model" />
 </template>
 
 <style scoped>
@@ -13,7 +13,7 @@ const model = defineModel()
   &:hover {
     @apply bg-theme-50;
   }
-  
+
   &:focus {
     @apply bg-theme-50;
   }
