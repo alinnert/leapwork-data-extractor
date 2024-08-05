@@ -1,0 +1,22 @@
+{
+  "name": "Leapwork Data Extractor",
+  "description": "Extrahiert diverse Informationen aus Leapwork-Flow-Run-Daten.",
+  "lang": "de-DE",
+  "display_override": [
+    "window-controls-overlay"
+  ],
+  "display": "standalone",
+  "start_url": "/leapwork-data-extractor",
+  "icons": [
+    {
+      "src": "appicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "appicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

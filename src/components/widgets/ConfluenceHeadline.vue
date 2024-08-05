@@ -61,7 +61,7 @@ async function handleCopyHeadlineRunningClick() {
 </script>
 
 <template>
-  <StatusbarSection title="Überschrift">
+  <StatusbarSection title="Überschrift" v-if="totalCount > 0">
     <UiOutput>{{ confluenceHeadline }}</UiOutput>
 
     <UiButton

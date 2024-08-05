@@ -15,7 +15,7 @@ const props = defineProps<{ icon?: Component }>()
 
 <style scoped>
 .button {
-  @apply flex items-center text-sm border border-theme-700 border-b-theme-900 rounded bg-black/20 text-white px-2 py-1;
+  @apply flex items-center text-sm border border-theme-700 border-b-theme-900 rounded bg-black/20 text-white px-2 py-1 select-none;
 
   &:disabled {
     @apply border-theme-600 bg-theme-500 text-theme-200;
