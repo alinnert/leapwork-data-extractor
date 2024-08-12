@@ -3,23 +3,31 @@ import AppLogo from './AppLogo.vue'
 </script>
 
 <template>
-  <header class="header col-span-2 grid grid-cols-[auto,auto,1fr,auto] items-center h-10 drag text-white text-sm">
-    <AppLogo></AppLogo>
+  <div class="col-span-2">
+    <header
+      class="titlebar grid grid-cols-[auto,auto,1fr,auto] items-center h-10 drag bg-theme-600 text-white text-sm"
+    >
+      <AppLogo></AppLogo>
 
-    <div class="flex gap-x-1 no-drag">
-      <slot name="primary"></slot>
-    </div>
+      <div class="flex gap-x-1 no-drag">
+        <slot name="primary"></slot>
+      </div>
 
-    <div></div>
-    
-    <div class="flex gap-x-1 pr-2 no-drag">
-      <slot name="secondary"></slot>
+      <div></div>
+
+      <div class="flex gap-x-1 pr-2 no-drag">
+        <slot name="secondary"></slot>
+      </div>
+    </header>
+
+    <div>
+      <slot name="toolbars"></slot>
     </div>
-  </header>
+  </div>
 </template>
 
 <style>
-.header {
+.titlebar {
   margin-left: env(titlebar-area-x, 0);
   margin-right: calc(100% - env(titlebar-area-x, 0) - env(titlebar-area-width, 0));
 }

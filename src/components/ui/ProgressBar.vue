@@ -4,7 +4,7 @@ defineProps<{ passed: number; done: number; failed: number }>()
 
 <template>
   <div
-    class="grid items-stretch w-80 h-4 rounded overflow-hidden border border-theme-700 mx-4"
+    class="grid items-stretch w-80 h-4 rounded overflow-hidden border border-stone-600 mx-4"
     :style="{
       gridTemplateColumns: `${passed}fr ${done}fr ${failed}fr`,
     }"

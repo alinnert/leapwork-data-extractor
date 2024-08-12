@@ -2,7 +2,7 @@
 import { getPercent } from '@/lib/getPercentage.js'
 import { ClockIcon, DocumentDuplicateIcon } from '@heroicons/vue/16/solid'
 import { computed } from 'vue'
-import StatusbarSection from '../layout/StatusbarSection.vue'
+import StatusbarSection from '../layout/ToolbarSection.vue'
 import UiButton from '../ui/UiButton.vue'
 import UiOutput from '../ui/UiOutput.vue'
 

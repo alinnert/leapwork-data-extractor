@@ -1,0 +1,20 @@
+Was ist der Leapwork Data Extractor?
+====================================
+      
+Der Leapwork Data Extractor filtert aus den von Leapwork kopierten Testergebnissen die
+Fehlgeschlagenen heraus und bringt sie in ein Format, das in Excel eingefügt werden kann,
+um dort weitere Details zu den fehlgeschlagenen Tests angeben zu können.
+
+
+Wie funktioniert der Leapwork Data Extractor?
+=============================================
+
+1. Testfälle in Leapwork markieren, rechtsklicken und 'Copy flow run data' klicken.
+2. Diese aus der Zwischenablage hier ins linke Textfeld einfügen.
+3. Das Ergebnis auf der rechten Seite kopieren und in Excel einfügen.
+
+
+Format-Beispiel
+===============
+
+Timestamp: DD.MM.YYYY hh:mm:ss +hh:mm, Flow: [flow name], Agent: [agent name], Schedule: [schedule name], Runtime: hh:mm:ss.ms{7}, Result: [Passed|Done|Failed|Running]

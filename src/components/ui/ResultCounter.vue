@@ -16,10 +16,10 @@ const wording: Record<typeof props.type, string> = {
 }
 
 const classNames: Record<typeof props.type, string> = {
-  passed: 'bg-emerald-700 border border-emerald-950 text-emerald-100',
-  done: 'bg-amber-700 border border-amber-950 text-amber-100',
-  failed: 'bg-rose-700 border border-rose-950 text-rose-100',
-  running: 'bg-sky-700 border border-sky-950 text-sky-100',
+  passed: 'bg-emerald-200 text-emerald-950 border border-emerald-400',
+  done: 'bg-amber-200 text-amber-950 border border-amber-400',
+  failed: 'bg-rose-200 text-rose-950 border border-rose-400',
+  running: 'bg-sky-200 text-sky-950 border border-sky-400',
 }
 
 const percentage = computed(() => getPercent(props.total, props.count))

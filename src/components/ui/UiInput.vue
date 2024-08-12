@@ -8,14 +8,10 @@ const model = defineModel({ type: String })
 
 <style scoped>
 .input {
-  @apply rounded bg-theme-100 text-theme-900 border border-theme-900 px-1.5 py-1 outline-none;
-
-  &:hover {
-    @apply bg-theme-50;
-  }
+  @apply rounded text-stone-700 border border-stone-400 border-b-stone-800 px-1.5 py-0.5 outline-none;
 
   &:focus {
-    @apply bg-theme-50;
+    @apply border-stone-800;
   }
 }
 </style>
