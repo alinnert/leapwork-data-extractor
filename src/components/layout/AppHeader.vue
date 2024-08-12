@@ -5,18 +5,20 @@ import AppLogo from './AppLogo.vue'
 <template>
   <div class="col-span-2">
     <header
-      class="titlebar grid grid-cols-[auto,auto,1fr,auto] items-center h-10 drag bg-theme-600 text-white text-sm"
+      class="bg-theme-600"
     >
-      <AppLogo></AppLogo>
+      <div class="titlebar grid grid-cols-[auto,auto,1fr,auto] items-center h-10 drag text-white text-sm">
+        <AppLogo></AppLogo>
 
-      <div class="flex gap-x-1 no-drag">
-        <slot name="primary"></slot>
-      </div>
+        <div class="flex gap-x-1 no-drag">
+          <slot name="primary"></slot>
+        </div>
 
-      <div></div>
+        <div></div>
 
-      <div class="flex gap-x-1 pr-2 no-drag">
-        <slot name="secondary"></slot>
+        <div class="flex gap-x-1 pr-2 no-drag">
+          <slot name="secondary"></slot>
+        </div>
       </div>
     </header>
 

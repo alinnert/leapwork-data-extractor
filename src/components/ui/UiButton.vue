@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<{ icon?: Component; dark?: boolean }>(), 
     @apply border-black/20 border-b-black/65 bg-black/10 text-black/80;
 
     &:disabled {
-      @apply border-transparent bg-white/20 text-black/50;
+      @apply border-transparent bg-black/5 text-black/50;
     }
 
     &:not(:disabled):hover {
@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<{ icon?: Component; dark?: boolean }>(), 
     @apply border-black/20 border-b-black/80 bg-black/20 text-white;
 
     &:disabled {
-      @apply border-transparent bg-white/20 text-black/50;
+      @apply border-transparent bg-white/20 text-white/75;
     }
 
     &:not(:disabled):hover {
